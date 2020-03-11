@@ -24,13 +24,17 @@ router.post("/addMovie", function(req, res, next) {
   movie.title = title;
   movie.poster_path = poster_path;
   movie.vote = vote;
-
-  return movie.save(function(err, movie) {
-    if (err) {
-      console.log(err);
-      return res.status(500).send({ message: "Fail save movie" });
+  Movie.find({ idMovie: id }, function(err, movieFind) {
+    console.log(movieFind);
+    if (movieFind.length < 1) {
+      return movie.save(function(err, movie) {
+        if (err) {
+          console.log(err);
+          return res.status(500).send({ message: "Fail save movie" });
+        }
+        return res.status(200).send({ message: "Movie save success", movie });
+      });
     }
-    return res.status(200).send({ message: "Movie save success", movie });
   });
 });
 

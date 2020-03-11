@@ -1,6 +1,11 @@
 var express = require("express");
 var app = express();
+var bodyParser = require("body-parser");
+
 const mongoose = require("mongoose");
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 mongoose.connect("mongodb://localhost/firemovietest", {
   useNewUrlParser: true,

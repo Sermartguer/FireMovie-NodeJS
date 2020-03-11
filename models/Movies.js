@@ -2,9 +2,9 @@ var mongoose = require("mongoose");
 
 var MovieSchema = new mongoose.Schema(
   {
+    idMovie: String,
     title: String,
     poster_path: String,
-    overview: String,
     vote: String
   },
   { timestamps: true }
